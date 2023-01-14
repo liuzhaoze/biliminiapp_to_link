@@ -16,7 +16,7 @@ async def biliminiapp_to_link(bot, event: Event):
         return # 非小程序信息，函数返回
 
     # 提取视频标题及URL
-    if type(data_j) == dict and data_j['desc'] == '哔哩哔哩':
+    if type(data_j) == dict and data_j['app'] == 'com.tencent.miniapp_01' and data_j['meta']['detail_1']['title'] == '哔哩哔哩':
         title = data_j['meta']['detail_1']['desc']
         url_raw = data_j['meta']['detail_1']['qqdocurl']
 
@@ -26,4 +26,4 @@ async def biliminiapp_to_link(bot, event: Event):
         url = headers['Location']
         url = url[:url.find('?')]
 
-        await bot.send(event, f'{title}\n{url}')
+        await bot.send(event, f'【{title}】\n{url}')
