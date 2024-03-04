@@ -9,7 +9,7 @@ sv = Service('biliminiapp', enable_on_default=True, help_='Bilibili小程序转�
 @sv.on_message('group')
 async def biliminiapp_to_link(bot, event: Event):
     msg = str(event.message)
-    data = msg[msg.find('data=') + len('data='): -1].replace('&#44;', ',')  # 获取小程序 JSON 信息
+    data = msg[msg.find('data=') + len('data='): -1].replace('&amp;#44;', ',')  # 获取小程序 JSON 信息
     try:
         data_j = ujson.loads(data)
     except ujson.JSONDecodeError:
