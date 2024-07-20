@@ -1,8 +1,12 @@
-from hoshino import Service
-from aiocqhttp.event import Event
-import ujson
-import requests
 import html
+
+import requests
+import ujson
+from aiocqhttp.event import Event
+
+from hoshino import Service
+
+from .config import PROXIES
 
 sv = Service("biliminiapp", enable_on_default=True, help_="Bilibili小程序转链接")
 
@@ -28,7 +32,7 @@ async def biliminiapp_to_link(bot, event: Event):
         url_raw = data_j["meta"]["detail_1"]["qqdocurl"]
 
         # 获取实际BV号的URL
-        response = requests.get(url_raw)
+        response = requests.get(url_raw, proxies=PROXIES)
         headers = response.history[0].headers
         url = headers["Location"]
         url = url[: url.find("?")]
