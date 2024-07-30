@@ -1,5 +1,11 @@
 # Bilibili小程序转链接
 
+## 安装依赖
+
+```bash
+pip install ujson
+```
+
 ## 使用方法
 
 1. 将本仓库clone到 `hoshino/modules/` 目录下
